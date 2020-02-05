@@ -8,6 +8,8 @@ from model import Movie
 from model import connect_to_db, db
 from server import app
 
+from datetime import datetime
+
 
 def load_users():
     """Load users from u.user into database."""
@@ -45,9 +47,14 @@ def load_movies():
         row = row.rstrip()
         movie_id, title, released_at, blank, imdb_url, genres = row.split("|", 5)
 
+        title = title[:-6]
+
+        format = "%d-%b-%Y"
+        released_date = datetime.strptime(released_at, format)
+
         movie = Movie(movie_id=movie_id,
                       title=title,
-                      released_at=released_at,
+                      released_at=released_date,
                       imdb_url=imdb_url)
 
         db.session.add(movie)
