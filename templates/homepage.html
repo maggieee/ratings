@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 <h1>Ratings</h1>
@@ -8,5 +9,18 @@
 
 <h2>Users</h2>
 <p><a href="/users">View all users</a></p>
+
+{# <button type = "submit" formaction = "logout"> Logout </button> #}
+
+<form action="logout" method="POST" class=flashes>
+    {% for message in get_flashed_messages() %}
+    {% if message == "You were successfully logged in" %}
+      
+        <input type="submit" value="Log out!">
+    {% endif %}
+    {% endfor %}
+</form>
+
+
 
 {% endblock %}

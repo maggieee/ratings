@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Client_login</h2>
+
+  <form action="login" method="POST">
+
+  <label><h1>E-mail </h1>
+  <input type = "text" name="email"> 
+  </label>
+
+  <label>
+  Password
+  <input type = "text" name="password">
+ </label>
+
+  <input type="submit" value="login!">
+</form>
+
+{% endblock %}
