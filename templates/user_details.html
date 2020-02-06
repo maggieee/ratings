@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h2>Hi {{ session['email'] }}!</h2>
+
+  <ul>
+    {{ user.email }}
+      <li>
+        {{ user.age }}
+      </li>
+      <li>
+        {{ user.zipcode }}
+      </li>
+      <li>
+        {{ user.ratings }}
+      </li>
+  </ul>
+
+{% endblock %}

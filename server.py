@@ -45,7 +45,8 @@ def login_user():
         user = User.query.filter_by(email=email, password=password).all()
 
         if len(user) != 0:
-            session[user[0].email] = user[0].password
+            session['email'] = user[0].email
+            session['password'] = user[0].password
             flash('You were successfully logged in')
             print(session)
 
@@ -64,9 +65,11 @@ def logout_user():
     return redirect("/")
 
 
-@app.route("user_details")
+@app.route("/user_details")
 def show_user_details():
     """Show user details."""
+
+    print(session)
 
     return render_template("user_details.html")
 
@@ -77,6 +80,16 @@ def user_list():
 
     users = User.query.all()
     return render_template("user_list.html", users=users)
+
+
+@app.route("/users/<user_id>")
+def show_user_id_details(user_id):
+    """Show user details."""
+
+    user = User.query.filter_by(user_id=user_id).first_or_404()
+
+
+    return render_template("user_details.html", user=user)
 
 
 @app.route("/register", methods=["GET"])
